@@ -1,0 +1,493 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f5f7fb;
+    color: #1f2937;
+}
+
+/* =========================
+   CONTENEDOR
+========================= */
+
+.contenedor {
+    width: 92%;
+    max-width: 1200px;
+    margin: 35px auto;
+}
+
+
+/* =========================
+   ENCABEZADO MODERNO
+========================= */
+
+header {
+    background: #2563eb;
+    color: white;
+
+    padding: 35px 30px;
+
+    border-radius: 18px;
+
+    margin-bottom: 30px;
+
+    text-align: center;
+
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.20);
+}
+
+header h1 {
+    margin: 0;
+
+    font-size: 42px;
+
+    font-weight: 800;
+
+    letter-spacing: -1px;
+}
+
+header p {
+    margin: 10px 0 25px;
+
+    color: #dbeafe;
+
+    font-size: 17px;
+}
+
+
+/* =========================
+   MENU CENTRADO
+========================= */
+
+nav {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+
+    text-decoration: none;
+
+    padding: 11px 22px;
+
+    border-radius: 9px;
+
+    background: rgba(255, 255, 255, 0.15);
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+}
+
+nav a:hover {
+    background: white;
+
+    color: #2563eb;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   MENU
+========================= */
+
+nav {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.14);
+    transition: 0.2s;
+    font-size: 14px;
+}
+
+nav a:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+
+/* =========================
+   MENSAJES
+========================= */
+
+.mensaje {
+    background: #ecfdf5;
+    color: #047857;
+    border: 1px solid #a7f3d0;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 22px;
+}
+
+.mensaje p {
+    margin: 0;
+}
+
+
+/* =========================
+   VENTA
+========================= */
+
+main form {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 28px;
+}
+
+.productos,
+.resumen,
+.historial {
+    background: white;
+    padding: 28px;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.productos h2,
+.resumen h2,
+.historial h2 {
+    margin-top: 0;
+    margin-bottom: 22px;
+    font-size: 21px;
+}
+
+
+/* =========================
+   PRODUCTOS
+========================= */
+
+.producto {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 17px;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+
+    margin-bottom: 12px;
+
+    transition: 0.2s;
+}
+
+.producto:hover {
+    border-color: #bfdbfe;
+    background: #f8fbff;
+}
+
+.producto h3 {
+    margin: 0 0 6px;
+    font-size: 16px;
+}
+
+.producto p {
+    margin: 5px 0;
+    font-weight: 600;
+}
+
+.producto small {
+    color: #6b7280;
+}
+
+
+/* =========================
+   CANTIDAD
+========================= */
+
+.cantidad-input {
+    width: 72px;
+    padding: 9px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+
+    font-size: 15px;
+    text-align: center;
+}
+
+.cantidad-input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+
+/* =========================
+   CARRITO
+========================= */
+
+#carrito {
+    min-height: 110px;
+}
+
+.item-carrito {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+
+    padding: 13px 0;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.item-carrito strong {
+    text-align: right;
+}
+
+
+/* =========================
+   TOTAL
+========================= */
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 24px;
+    padding-top: 20px;
+
+    border-top: 2px solid #e5e7eb;
+
+    font-size: 18px;
+}
+
+.total strong {
+    font-size: 27px;
+    color: #2563eb;
+}
+
+
+/* =========================
+   SELECT
+========================= */
+
+select {
+    width: 100%;
+
+    padding: 12px;
+
+    margin-top: 8px;
+    margin-bottom: 20px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+
+    font-size: 15px;
+    background: white;
+}
+
+select:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+
+/* =========================
+   FORMULARIO PRODUCTOS
+========================= */
+
+.resumen form {
+    display: flex;
+    flex-direction: column;
+}
+
+.resumen form label {
+    margin-top: 13px;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.resumen form input {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+
+    font-size: 15px;
+}
+
+.resumen form input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+
+/* =========================
+   TODOS LOS BOTONES
+========================= */
+
+.btn-vender,
+.boton {
+    background: #2563eb;
+    color: white;
+
+    border: none;
+    border-radius: 8px;
+
+    padding: 12px 18px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    text-decoration: none;
+    text-align: center;
+
+    transition: 0.2s;
+}
+
+.btn-vender {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.btn-vender:hover,
+.boton:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   SEPARACIÓN FORMULARIO
+========================= */
+
+/* Cuando Productos usa resumen,
+   separamos visualmente el formulario
+   de la tabla */
+
+.resumen + .historial {
+    margin-top: 30px;
+}
+
+
+/* =========================
+   HISTORIAL
+========================= */
+
+.historial {
+    margin-top: 28px;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+}
+
+thead {
+    background: #f8fafc;
+}
+
+th {
+    padding: 14px;
+    text-align: left;
+
+    font-size: 13px;
+    color: #475569;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+td {
+    padding: 14px;
+
+    border-bottom: 1px solid #f1f5f9;
+
+    font-size: 14px;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr:hover {
+    background: #f8fafc;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 850px) {
+
+    main form {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .contenedor {
+        width: 94%;
+        margin: 20px auto;
+    }
+
+    header {
+        padding: 22px;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    nav {
+        flex-direction: column;
+    }
+
+    nav a {
+        text-align: center;
+    }
+
+    .productos,
+    .resumen,
+    .historial {
+        padding: 20px;
+    }
+
+    .producto {
+        padding: 13px;
+    }
+
+    .item-carrito {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+
+    .item-carrito strong {
+        text-align: left;
+    }
+
+}

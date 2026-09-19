@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Historial de Ventas</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='estilos.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="contenedor">
+
+    <header>
+
+        <h1>🍔 Snack Universitario</h1>
+
+        <p></p>
+
+        <nav>
+
+
+
+            <nav>
+            <a href="/">Nueva Venta</a>
+            <a href="/productos">Productos</a>
+            <a href="/historial">Historial</a>
+            
+        </nav>
+
+        </nav>
+
+    </header>
+
+
+    <section class="historial">
+
+        <h2>Ventas realizadas</h2>
+
+
+        {% if ventas %}
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Fecha</th>
+                    <th>Total</th>
+                    <th>Método de Pago</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for venta in ventas %}
+
+                <tr>
+
+                    <td>
+                        {{ venta.id_venta }}
+                    </td>
+
+                    <td>
+                        {{ venta.fecha }}
+                    </td>
+
+                    <td>
+                        Bs. {{ "%.2f"|format(venta.total) }}
+                    </td>
+
+                    <td>
+                        {{ venta.metodo_pago }}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        {% else %}
+
+        <p>
+            Todavía no existen ventas registradas.
+        </p>
+
+        {% endif %}
+
+
+        <br>
+
+        <a href="/" class="boton">
+            ← Nueva Venta
+        </a>
+
+    </section>
+
+</div>
+
+</body>
+
+</html>

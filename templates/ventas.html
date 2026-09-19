@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Snack Universitario - Ventas</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='estilos.css') }}">
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <header>
+
+        <h1>🍔 Snack Universitario</h1>
+        <p></p>
+
+       <nav>
+            <a href="/">Nueva Venta</a>
+            <a href="/productos">Productos</a>
+            <a href="/historial">Historial</a>
+            
+        </nav>
+
+    </header>
+
+
+    {% with mensajes = get_flashed_messages() %}
+
+        {% if mensajes %}
+
+            <div class="mensaje">
+
+                {% for mensaje in mensajes %}
+                    <p>{{ mensaje }}</p>
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    <main>
+
+        <form action="/registrar_venta"
+              method="POST"
+              onsubmit="return validarVenta()">
+
+
+            <section class="productos">
+
+                <h2>Productos</h2>
+
+
+                {% for producto in productos %}
+
+                <div class="producto">
+
+                    <div>
+
+                        <h3>
+                            {{ producto.nombre }}
+                        </h3>
+
+                        <p>
+                            Bs. {{ "%.2f"|format(producto.precio) }}
+                        </p>
+
+                        <small>
+                            Stock: {{ producto.stock }}
+                        </small>
+
+                    </div>
+
+
+                    <div class="cantidad">
+
+                        <input
+                            type="hidden"
+                            name="id_producto"
+                            value="{{ producto.id_producto }}"
+                        >
+
+                        <input
+                            type="number"
+                            name="cantidad"
+                            min="0"
+                            max="{{ producto.stock }}"
+                            value="0"
+                            class="cantidad-input"
+                            data-precio="{{ producto.precio }}"
+                            data-nombre="{{ producto.nombre }}"
+                            data-stock="{{ producto.stock }}"
+                        >
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </section>
+
+
+            <section class="resumen">
+
+                <h2>Resumen de Venta</h2>
+
+
+                <div id="carrito">
+
+                    <p>
+                        Seleccione productos para realizar la venta.
+                    </p>
+
+                </div>
+
+
+                <div class="total">
+
+                    <span>Total:</span>
+
+                    <strong id="total">
+                        Bs. 0.00
+                    </strong>
+
+                </div>
+
+
+                <label for="metodo_pago">
+                    Método de pago
+                </label>
+
+                <select
+                    name="metodo_pago"
+                    id="metodo_pago"
+                    required
+                >
+
+                    <option value="">
+                        Seleccionar
+                    </option>
+
+                    <option value="Efectivo">
+                        Efectivo
+                    </option>
+
+                    <option value="QR">
+                        QR
+                    </option>
+
+                    <option value="Tarjeta">
+                        Tarjeta
+                    </option>
+
+                </select>
+
+
+                <button
+                    type="submit"
+                    class="btn-vender"
+                >
+                    REGISTRAR VENTA
+                </button>
+
+            </section>
+
+        </form>
+
+    </main>
+
+</div>
+
+
+<script>
+
+function actualizarCarrito() {
+
+    const inputs =
+        document.querySelectorAll(".cantidad-input");
+
+    const carrito =
+        document.getElementById("carrito");
+
+    const totalElemento =
+        document.getElementById("total");
+
+    let total = 0;
+
+    let html = "";
+
+    let hayProductos = false;
+
+
+    inputs.forEach(function(input) {
+
+        const cantidad =
+            parseInt(input.value) || 0;
+
+        const precio =
+            parseFloat(input.dataset.precio);
+
+        const nombre =
+            input.dataset.nombre;
+
+
+        if (cantidad > 0) {
+
+            hayProductos = true;
+
+            const subtotal =
+                cantidad * precio;
+
+            total += subtotal;
+
+
+            html += `
+                <div class="item-carrito">
+
+                    <span>
+                        ${nombre}
+                    </span>
+
+                    <span>
+                        ${cantidad} x Bs.
+                        ${precio.toFixed(2)}
+                    </span>
+
+                    <strong>
+                        Bs. ${subtotal.toFixed(2)}
+                    </strong>
+
+                </div>
+            `;
+        }
+
+    });
+
+
+    if (hayProductos) {
+
+        carrito.innerHTML = html;
+
+    } else {
+
+        carrito.innerHTML =
+            "<p>Seleccione productos para realizar la venta.</p>";
+
+    }
+
+
+    totalElemento.textContent =
+        "Bs. " + total.toFixed(2);
+}
+
+
+function validarVenta() {
+
+    const inputs =
+        document.querySelectorAll(".cantidad-input");
+
+    let hayProductos = false;
+
+
+    inputs.forEach(function(input) {
+
+        if (parseInt(input.value) > 0) {
+            hayProductos = true;
+        }
+
+    });
+
+
+    if (!hayProductos) {
+
+        alert("Debe seleccionar al menos un producto.");
+
+        return false;
+    }
+
+
+    return true;
+}
+
+
+document
+    .querySelectorAll(".cantidad-input")
+    .forEach(function(input) {
+
+        input.addEventListener(
+            "input",
+            actualizarCarrito
+        );
+
+    });
+
+
+actualizarCarrito();
+
+</script>
+
+</body>
+
+</html>
